@@ -1,6 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+process.env.ENV = "test"
+
+console.log("the env variables are ", process.env.ENV);
+
 import { User, OrderProducts, Product } from "../../utilities/helper";
 import userModel from "../user";
 import ProductModel from "../product";

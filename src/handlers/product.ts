@@ -6,13 +6,21 @@ import { Product } from "../utilities/helper";
 const productInstance = new ProductModel();
 
 const getAllProducts = async (req:Request, res:Response)=>{
-    const products = await productInstance.index();
-    res.send(products);
+    try{
+        const products = await productInstance.index();
+        res.send(products);
+    }catch(_e){
+        res.send("something went wrong, please try again");
+    }
 }
 
 const getProduct = async (req:Request, res:Response)=>{
-    const product = await productInstance.show(parseInt(req.params.id));
-    res.send(product);
+    try{
+        const product = await productInstance.show(parseInt(req.params.id));
+        res.send(product);
+    }catch(_e){
+        res.send("something went wrong, please try again");
+    }
 }
 
 const createProduct = async (req:Request, res:Response)=>{
