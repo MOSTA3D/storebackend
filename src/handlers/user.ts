@@ -39,7 +39,7 @@ const createUser = async(req:Request, res:Response)=>{
 const userRoutes = (app:Application)=>{
     app.get("/users",validate, listUsers);
     app.get("/users/:id",validate, showUser);
-    app.post("/users", validate, createUser);
+    app.post("/users", createUser);
 }
 
 export default userRoutes;
