@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "description": "",
   "main": "server.ts",
+  
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MOSTA3D/storebackend.git"
+  },
+  
   "scripts": {
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
