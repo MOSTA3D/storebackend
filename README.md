@@ -13,10 +13,11 @@ to connect to the database you must have in the .env file these variables:
 
 and rest of the work will be handles with the dotenv package.
 
-* service port will be choosen automatically
+* postgresql port is 5432
 
 ## Installing required dependencies
 you should run `npm install` and the required packages will be installed automatically
 
 ## initiating development server
 you should run `npm run watch` to run watch command
+server is running on port 3000
