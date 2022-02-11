@@ -1,0 +1,2 @@
+CREATE TABLE orders (id SERIAL PRIMARY KEY, status CHAR(8), uid INTEGER REFERENCES users(id));
+

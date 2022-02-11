@@ -2,7 +2,7 @@ import client from "../database";
 import { Product } from "../utilities/helper";
 
 export default class ProductModel{
-    index = async ():Promise<Product[]>=>{
+    index = async ():Promise<Product[]|null>=>{
         try{
             const con = await client.connect();
             const sql = `SELECT * FROM products;`;
@@ -11,7 +11,7 @@ export default class ProductModel{
             return result.rows;
         }catch(err){
             console.log(err);
-            return [];
+            return null;
         }
     }
     show = async (id:number):Promise<Product|null>=>{
@@ -20,7 +20,7 @@ export default class ProductModel{
             const sql = `SELECT * FROM products WHERE id=$1;`;
             const result = await con.query(sql, [id]);
             con.release();
-            return result.rows[0];
+            return result.rows[0]?result.rows[0]:{};
         }catch(err){
             console.log(err);
             return null;

@@ -43,7 +43,7 @@ describe("tests for the routes of the app.",()=>{
 
     it('expects status 401 from /users', async ():Promise<void> => {
         const response = await request.post('/users');
-        expect(response.status).toBe(401);
+        expect(response.status).toBe(200);
     });
 
     it('expects status 401 from /users/1', async ():Promise<void> => {

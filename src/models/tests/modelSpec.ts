@@ -1,16 +1,15 @@
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
 process.env.ENV = "test"
-
-console.log("the env variables are ", process.env.ENV);
 
 import { User, OrderProducts, Product } from "../../utilities/helper";
 import userModel from "../user";
 import ProductModel from "../product";
 import OrderModel from "../order";
 
-describe("tests for models", ()=>{
+describe("tests for users model", ()=>{
     beforeEach(()=>{
         console.log("**************************************************************************");
     })
@@ -19,21 +18,21 @@ describe("tests for models", ()=>{
         expect(typeof(await userInstance.index())).toBe("object");
     });
 
-    it("expects index to return array", async ()=>{
+    it("expects show to return array", async ()=>{
         // const result = await userInstance.show(1);
         expect(typeof(await userInstance.show(1))).toBe("object");
     });
 
-    it("expects index to return array", async ()=>{
+    it("expects the user and created user to have the same firstname", async ()=>{
         const user:User = {
             firstname: "some",
             lastname: "thing",
             password: "somethingElse"
         };
 
-        const createdUser:User = await userInstance.create(user) as unknown as User;
-
-        expect(createdUser.firstname).toBe("some");
+        const createdUserToken:string = await userInstance.create(user) as unknown as string;
+        const createdUser:unknown = jwt.verify(createdUserToken, process.env.PVTKEY as unknown as string);
+        expect((createdUser as User).firstname).toBe("some");
     });
 })
 
@@ -54,10 +53,10 @@ describe("tests for product model", ()=>{
     })
 
     const productInstance = new ProductModel();
-    it("expects returning a object type.", async()=>{
+    it("expects index to return an object type.", async()=>{
         expect(typeof(await productInstance.index())).toBe("object");
     });
-    it("expects returning an object type.", async()=>{
+    it("expects show to return an object type.", async()=>{
         const product = await productInstance.show(1);
         expect(typeof(product)).toBe("object");
     });
