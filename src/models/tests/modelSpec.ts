@@ -32,6 +32,17 @@ describe("tests for users model", ()=>{
 
         const createdUserToken:string = await userInstance.create(user) as unknown as string;
         const createdUser:unknown = jwt.verify(createdUserToken, process.env.PVTKEY as unknown as string);
+        
+        console.group("checking environment variables.");
+            const { PVTKEY, PEPPER, SALT_ROUNDS} = process.env;
+            console.log(`${PVTKEY}\n${PEPPER}\n${SALT_ROUNDS}`);
+        console.groupEnd();
+
+        console.group("user token check");
+            console.log("the user is ", user);
+            console.log("the created user token is ", createdUserToken);
+            console.log("the created user is ", createdUser);
+        console.groupEnd();
         expect((createdUser as User).firstname).toBe("some");
     });
 })
