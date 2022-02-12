@@ -49,7 +49,7 @@ by typing  `db-migrate up` command in the terminal, tables users, orders, produc
 ## Installing required dependencies
 you should run `npm install` and the required packages will be installed automatically
 
-## Requird environment variables with an example for there values
+## Requird environment variables with an example for their values
 
 DB_USER=user
 DB_PASSWORD=password
