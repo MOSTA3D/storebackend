@@ -49,6 +49,20 @@ by typing  `db-migrate up` command in the terminal, tables users, orders, produc
 ## Installing required dependencies
 you should run `npm install` and the required packages will be installed automatically
 
+## Requird environment variables with an example for there values
+
+DB_USER=user
+DB_PASSWORD=password
+DB_HOST=127.0.0.1
+DB=storedb
+DB_TEST=storedb_test
+ENV=dev
+
+SALT_ROUNDS=10
+PEPPER=someSortOfPepper
+
+PVTKEY=xdqvkB43QajcBzi2fW0b9k+gFVW3JBqfjkQcLbSHJy1lGXkC8qN6PmpgExmGyJ5aGoXPdVxhT4UQ/I2/eb8P5GLc8FdqrxAI/WqrKSO0D8LsLC/ZpZUIxp3hGTkOfrH/lvkN2PiPAeaCTi6qSrc5tDbET2ZlONjvdk1CbC6m9b8HsRDgpdoZp5NM4T+T7jBO+GOHc1HvWHOur1fqOY0EzwFdkhENa7oIEu6l3B5c5ebEoHXoOo/WdWjM8VXMKHdbAcDV8ltmYbq97BmKCtBEs5TX2881prmP+Fq249BIdFKCMzzUr1dNSIfcBBAmyB5fuQyupxSf7LrtQryp0VjEHA==
+
 ## initiating development server
 you should run `npm run watch` to run watch command
 server is running on port 3000
