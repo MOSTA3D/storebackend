@@ -25,14 +25,16 @@ const showUser = async (req:Request, res:Response)=>{
 
 const createUser = async(req:Request, res:Response)=>{
     try{
-        const user = req.body.user as unknown as User;
+        const user = req.body as unknown as User;
+        console.log("here ", user);
         const createdUser = await userInstance.create(user);
+        console.log(createdUser)
         if(!createdUser){
-            res.send("please try again");
+            return res.send("please try again");
         }
-        res.json(createUser);
+        return res.send(createdUser);
     }catch(_e){
-        res.send("something went wrong");
+        return res.send("something went wrong");
     }
 }
 

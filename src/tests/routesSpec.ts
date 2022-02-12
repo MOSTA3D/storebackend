@@ -1,7 +1,20 @@
 import app from "../server";
 import supertest from "supertest";
+import userModel from "../models/user";
+
+
 
 describe("tests for the routes of the app.",()=>{
+
+    const user = {
+        firstname: "some",
+        lastname: "thing",
+        password: "password"
+    };
+
+    let testToken:string;
+
+
     beforeEach(():void => {
         console.log('\n_____________________________________\n');
     });
@@ -36,23 +49,24 @@ describe("tests for the routes of the app.",()=>{
         expect(response.status).toBe(401);
     });
     
-    it('expects status 401 from /users', async ():Promise<void> => {
-        const response = await request.get('/users');
-        expect(response.status).toBe(401);
+    it('expects status 200 from a post request to /users', async ():Promise<void> => {
+        const response = await request.post('/users').send(user);
+        expect(response.status).toBe(200);
+        testToken=response.text;
     });
 
-    it('expects status 401 from /users', async ():Promise<void> => {
-        const response = await request.post('/users');
+    it('expects status 200 from /users', async ():Promise<void> => {
+        const response = await request.get('/users').set("Authorization", `Bearer ${testToken}`);
         expect(response.status).toBe(200);
     });
 
-    it('expects status 401 from /users/1', async ():Promise<void> => {
-        const response = await request.get('/users/1');
-        expect(response.status).toBe(401);
+    it('expects status 200 from /users/1', async ():Promise<void> => {
+        const response = await request.get('/users/1').set("Authorization", `Bearer ${testToken}`);;
+        expect(response.status).toBe(200);
     });
 
-    it('expects status 401 from /orders/myorder', async ():Promise<void> => {
-        const response = await request.get('/orders/myorder');
-        expect(response.status).toBe(401);
+    it('expects status 200 from /orders/myorder', async ():Promise<void> => {
+        const response = await request.get('/orders/myorder').set("Authorization", `Bearer ${testToken}`);
+        expect(response.status).toBe(200);
     });
 })
